@@ -1,0 +1,7 @@
+const USER = {
+    CREATE: "USER_CREATE",
+    CREATE_SUCCESS: "USER_CREATE_SUCCESS",
+    CREATE_FAIL: "USER_CREATE_FAIL"
+}
+
+export default USER;
