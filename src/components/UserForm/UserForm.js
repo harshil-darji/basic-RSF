@@ -31,13 +31,14 @@ export class UserForm extends Component {
     this.setInitialValue = this.setInitialValue.bind(this);
   }
 
-  handleSubmit = (formValues) => {
+  handleSubmit = (formValues, { resetForm }) => {
     if(this.props.user){
       this.props.editUser(formValues);
       this.props.closeModalHandler();
     }
     else{
       this.props.createUser(formValues);
+      resetForm({});
     }
   };
 
