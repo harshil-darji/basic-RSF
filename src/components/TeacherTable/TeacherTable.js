@@ -11,7 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from "@material-ui/core/styles";
 
 import { connect } from 'react-redux';
-import { loadUsers, deleteUser } from '../../actions/userActions';
+import { loadTeachers, deleteTeacher } from '../../actions/teacherActions';
 import UserModal from '../Modal/Modal';
 
 const styles = () => ({
@@ -23,13 +23,13 @@ const styles = () => ({
   },
 });
 
-class UserTable extends Component {
+class TeacherTable extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       openModal: false,
-      selectedUser: {}
+      selectedTeacher: {}
     }
     this.openEditModal = this.openEditModal.bind(this);
     this.closeEditModal = this.closeEditModal.bind(this);
@@ -37,7 +37,7 @@ class UserTable extends Component {
 
 
   componentDidMount() {
-    this.props.loadUsers();
+    this.props.loadTeachers();
   }
 
   openEditModal(row) {
@@ -50,7 +50,7 @@ class UserTable extends Component {
 
   render() {
     const { classes } = this.props;
-    const { users } = this.props;
+    const { teachers } = this.props;
     return (
       <Fragment>
         <TableContainer component={Paper}>
@@ -67,7 +67,7 @@ class UserTable extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((row) => (
+              {teachers.map((row) => (
                 <TableRow key={row._id.$oid}>
                   <TableCell component="th" scope="row">
                     {row.name}
@@ -78,7 +78,7 @@ class UserTable extends Component {
                   <TableCell>{row.state}</TableCell>
                   <TableCell>{row.country_code}</TableCell>
                   <TableCell>
-                    <DeleteIcon className={classes.clickableIcon} color="action" fontSize="large" onClick={() => this.props.deleteUser(row._id.$oid)} />
+                    <DeleteIcon className={classes.clickableIcon} color="action" fontSize="large" onClick={() => this.props.deleteTeacher(row._id.$oid)} />
                     <EditIcon className={classes.clickableIcon} color="secondary" fontSize="large" onClick={() => this.openEditModal(row)} />
                   </TableCell>
                 </TableRow>
@@ -86,21 +86,21 @@ class UserTable extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-        <UserModal open={this.state.openModal} closeModalHandler={this.closeEditModal} selectedUser={this.state.selectedUser}/>
+        <UserModal open={this.state.openModal} closeModalHandler={this.closeEditModal} selectedTeacher={this.state.selectedTeacher}/>
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = ({ isLoading, users, error }) => ({
+const mapStateToProps = ({ isLoading, teachers, error }) => ({
   isLoading,
-  users,
+  teachers,
   error
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadUsers()),
-  deleteUser: (userId) => dispatch(deleteUser(userId)),
+  loadTeachers: () => dispatch(loadTeachers()),
+  deleteTeacher: (userId) => dispatch(deleteTeacher(userId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(UserTable));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TeacherTable));

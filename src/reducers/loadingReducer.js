@@ -1,5 +1,3 @@
-// import USER from '../constants';
-
 const loadingReducer = (state = false, action) => {
     const { type } = action;
     const matches = /(.*)_(REQUEST|SUCCESS|FAIL)/.exec(type);

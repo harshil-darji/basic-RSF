@@ -1,4 +1,4 @@
-import USER from '../constants';
+import USER from '../constants/userConstants';
 
 // Create User actions
 

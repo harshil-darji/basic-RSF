@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import 'fontsource-roboto';
 
 import './index.css';
-import App from './components/App';
+import Root from './components/Root/Root';
 
 ReactDOM.render(
-  <App />,
+  <Root />,
   document.getElementById('root')
 );

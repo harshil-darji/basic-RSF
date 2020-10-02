@@ -1,5 +1,10 @@
+import { all } from 'redux-saga/effects';
 import userSaga from './userSaga';
+import teacherSaga from './teacherSaga';
 
-// watcher saga --> actions --> worker saga
-
-export default userSaga;
+export default function* rootSaga() {
+  yield all([
+    userSaga(),
+    teacherSaga()
+  ])
+}

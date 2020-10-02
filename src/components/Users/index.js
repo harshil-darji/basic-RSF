@@ -3,14 +3,16 @@ import { Provider } from 'react-redux'
 
 import UserTable from '../UserTable/UserTable'
 import UserForm from '../UserForm/UserForm'
-import './App.css'
+import ButtonAppBar from '../Drawer/ButtonAppBar';
+import './Users.css'
 import configureStore from '../../store'
 
 const store = configureStore();
 
-function App() {
+function Users() {
     return (
         <Provider store={store}>
+            <ButtonAppBar title="Users"/>
             <Fragment>
                 <div className="form">
                     <UserForm title="Add new user"/>
@@ -23,4 +25,4 @@ function App() {
     )
 }
 
-export default App;
+export default Users;

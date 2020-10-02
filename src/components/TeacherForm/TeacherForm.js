@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 
 import FormikField from "../FormikField/FormikField";
 import FormikSelect from "../FormikSelect/FormikSelect";
-import { createUser, editUser } from '../../actions/userActions';
+import { createTeacher, editTeacher } from '../../actions/teacherActions';
 
 const countries = [
   { label: 'India', value: '91' },
@@ -31,29 +31,28 @@ const addUserSchema = Yup.object({
   state: Yup.string().required("Required"),
 });
 
-export class UserForm extends Component {
+export class TeacherForm extends Component {
 
   constructor(props) {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.setValue = this.setValue.bind(this);
     this.setInitialValue = this.setInitialValue.bind(this);
   }
 
   handleSubmit = (formValues, { resetForm }) => {
     if(this.props.user){
-      this.props.editUser(formValues);
+      this.props.editTeacher(formValues);
       this.props.closeModalHandler();
     }
     else{
-      this.props.createUser(formValues);
+      this.props.createTeacher(formValues);
       resetForm({});
     }
   };
 
   setInitialValue() {
-    if(this.props.user)
-      return this.props.user;
+    if(this.props.teacher)
+      return this.props.teacher;
     return initialValues;
   }
 
@@ -88,8 +87,8 @@ const mapStateToProps = ({ error }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  createUser: (formValues) => { dispatch(createUser(formValues)) },
-  editUser: (userId) => dispatch(editUser(userId))
+  createTeacher: (formValues) => { dispatch(createTeacher(formValues)) },
+  editTeacher: (userId) => dispatch(editTeacher(userId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TeacherForm);

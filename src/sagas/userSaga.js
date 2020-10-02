@@ -1,7 +1,7 @@
 import { takeEvery, call, put, takeLatest } from 'redux-saga/effects';
-import USER from '../constants';
-import { fetchUsers, postUser, deleteUser, editUser } from '../api';
-import { setUsers, setUsersError, createUserError, addedUserToDb, deleteUserError, deleteUserComplete, editUserError, editUserComplete } from '../actions';
+import USER from '../constants/userConstants';
+import { fetchUsers, postUser, deleteUser, editUser } from '../api/userAPI';
+import { setUsers, setUsersError, createUserError, addedUserToDb, deleteUserError, deleteUserComplete, editUserError, editUserComplete } from '../actions/userActions';
 
 function* handleUserPost(payload){
     try{
@@ -47,7 +47,7 @@ function* handleUserEdit(payload){
 }
 
 // watcher
-export default function* watchUsersLoad(){
+export default function* userWatcher(){
     yield takeEvery(USER.LOAD, handleUsersLoad);
     yield takeLatest(USER.CREATE, handleUserPost);
     yield takeLatest(USER.DELETE, handleUserDelete);

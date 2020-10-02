@@ -1,4 +1,4 @@
-import USER from '../constants';
+import USER from '../constants/userConstants';
 
 const errorReducer = (state = null, action) => {
     switch (action.type) {
